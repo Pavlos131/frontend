@@ -28,11 +28,7 @@ const applicationStore = useApplicationStore();
                             >Requests</router-link
                         >
                     </li>
-                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
-                        <router-link :to="{ name: 'courses' }" class="nav-link text-white"
-                            >Courses</router-link
-                        >
-                    </li>
+                    
                     <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
                         <router-link :to="{ name: 'profile' }" class="nav-link text-white"
                             >Profile
@@ -44,6 +40,11 @@ const applicationStore = useApplicationStore();
                     <li class="nav-item" v-if="applicationStore.isAuthenticated === false">
                         <router-link :to="{ name: 'login' }" class="nav-link text-white"
                             >Login</router-link
+                        >
+                    </li>
+                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
+                        <router-link :to="{ name: 'users' }" class="nav-link text-white"
+                            >Users</router-link
                         >
                     </li>
                     <li class="nav-item" v-if="applicationStore.isAuthenticated === true">

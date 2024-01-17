@@ -24,12 +24,7 @@ const router = createRouter({
             component: () => import('../views/RequestsView.vue'),
             meta: { requiresAuth: true }
         },
-        {
-            path: '/courses',
-            name: 'courses',
-            component: () => import('../views/CoursesView.vue'),
-            meta: { requiresAuth: true }
-        },
+       
         {
             path: '/login',
             name: 'login',
@@ -47,8 +42,23 @@ const router = createRouter({
             component: () => import('../views/CreateRequestView.vue'),
             meta: { requiresAuth: true }
         
-        }
+        },
+        {
 
+            path: '/users',
+            name: 'users',
+            component: () => import('../views/UsersView.vue'),
+            meta: { requiresAuth: true }
+        
+        },
+        {
+
+            path: '/edituser:id',
+            name: 'edituser',
+            component: () => import('../views/EditUserView.vue'),
+            meta: { requiresAuth: true }
+        
+        }
     ]
 });
 
