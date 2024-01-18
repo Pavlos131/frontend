@@ -41,7 +41,7 @@ async function approve(id) {
         }));
     }
 });
-s
+
         const entryIndex = formattedData.value.findIndex(entry => entry.id === id);
         if (entryIndex !== -1) {
             formattedData.value[entryIndex].condition = 'Approved'; 

@@ -1,8 +1,15 @@
 <script setup>
 import { ref, watchEffect } from 'vue';
+
+
+
 import { useRemoteDataGET } from '@/composables/useRemoteDataGET.js';
-const { data, error, loading } = useRemoteDataGET('http://localhost:9090/api/users/', true);
+import router from '@/router';
+
+
 const formattedData = ref([]);
+function ds(){
+const { data, error, loading } = useRemoteDataGET('http://localhost:9090/api/users/', true);
 watchEffect(() => {
     if (data.value) {
         formattedData.value = data.value.map(user => ({
@@ -10,16 +17,37 @@ watchEffect(() => {
             id: user.id || 'N/A',
             username: user.username || 'N/A',
             email: user.email || 'N/A',
-            roles: user.roles || 'N/A' // Assuming roles is an array or similar structure
+            roles: user.roles || 'N/A' 
         }));
     }
-});
+})}
 
+async function makemod(id) {
+    
+        // Make mod
+         useRemoteDataGET('http://localhost:9090/api/users/makemod/' + id,true);
+         ds()
+         window
+         
+     
+}
 
+async function removemod(id) {
+    
+        // Make mod
+         useRemoteDataGET('http://localhost:9090/api/users/removemod/' + id,true);
+         ds();
+         
+    
+        
+        
+}
+ds();
 </script>
+
 <template>
   <div class="users-view">
-    <h2>Users</h2>
+    <h2>Users kante reload meta apo removemod i makemod</h2>
     <div v-for="user in formattedData" :key="user.id" class="user-details">
       <p><strong>ID:</strong> {{ user.id }}</p>
       <p><strong>Username:</strong> {{ user.username }}</p>
@@ -31,6 +59,8 @@ watchEffect(() => {
           <li v-for="role in user.roles" :key="role">{{ role }}</li>
         </ul>
       </div>
+      <button @click="makemod(user.id)"  >makemod</button>
+     <button @click="removemod(user.id)">remove mod</button>
       <RouterLink
         class=".custom-button"
         :to="{ name: 'edituser', params: { id: user.id } }"
