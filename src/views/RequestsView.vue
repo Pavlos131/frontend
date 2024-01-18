@@ -66,6 +66,21 @@ async function disapprove(id) {
         console.error("Error disapproving request:", error);
     }
 }
+async function deleteEntry(id) {
+    try {
+        await useRemoteDataGET('http://localhost:9090/api/requests/delete/' + id, true);
+        console.log("Deleted", id);
+
+
+        const entryIndex = formattedData.value.findIndex(entry => entry.id === id);
+        if (entryIndex !== -1) {
+            formattedData.value.splice(entryIndex, 1);
+        }
+    } catch (error) {
+        console.error("Error deleting request:", error);
+    }
+}
+
 </script>
 
 
@@ -78,6 +93,8 @@ async function disapprove(id) {
             <li v-for="entry in formattedData" :key="entry.id" class="data-item">
                 <button @click="approve(entry.id)" class="button approve-button" >Approve</button>
                 <button @click="disapprove(entry.id)" class="button disapprove-button" >Disapprove</button>
+                <button @click="deleteEntry(entry.id)" class="button disapprove-button">Delete</button>
+
                 <div>ID: {{ entry.id }}</div>
                 <div>Company: {{ entry.companyname }}</div>
                 <div>Katastatiko: {{ entry.katastatiko }}</div>

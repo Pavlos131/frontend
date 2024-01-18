@@ -58,6 +58,13 @@ const router = createRouter({
             component: () => import('../views/EditUserView.vue'),
             meta: { requiresAuth: true }
         
+        }, {
+
+            path: '/myrequests',
+            name: 'myrequests',
+            component: () => import('../views/myrequestsview.vue'),
+            meta: { requiresAuth: true }
+        
         }
     ]
 });
