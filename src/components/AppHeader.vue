@@ -47,10 +47,17 @@ const applicationStore = useApplicationStore();
                             >Login</router-link
                         >
                     </li>
+
+                  <li class="nav-item" v-if="applicationStore.isAuthenticated === false">
+                    <router-link :to="{ name: 'signup' }" class="nav-link text-white"
+                    >Sign up</router-link
+                    >
+                  </li>
                     <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
                         <router-link :to="{ name: 'users' }" class="nav-link text-white"
                             >Users</router-link
                         >
+
                     </li>
                     <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
                         <router-link :to="{ name: 'createrequest' }" class="nav-link text-white"
