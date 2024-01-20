@@ -34,9 +34,19 @@ export const useApplicationStore = defineStore('application', () => {
         localStorage.setItem('userData', JSON.stringify(null));
         userData.value = null;
     };
+    function isAdmin(){
+
+        return userData.value.roles.includes("ROLE_ADMIN")
+         
+        };
+        function isMod(){
+
+            return userData.value.roles.includes("ROLE_MODERATOR") || userData.value.roles.includes("ROLE_ADMIN")
+             
+            };
     const isAuthenticated = computed(() => {
         return checkJWT(userData.value?.accessToken);
     });
 
-    return { userData, setUserData, persistUserData, loadUserData, clearUserData, isAuthenticated };
+    return { userData, setUserData, persistUserData, loadUserData,isAdmin,isMod ,clearUserData, isAuthenticated };
 });

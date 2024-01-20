@@ -1,6 +1,9 @@
 <script setup>
 import { useApplicationStore } from '@/stores/application.js';
 const { userData } = useApplicationStore();
+
+
+
 </script>
 
 <template>

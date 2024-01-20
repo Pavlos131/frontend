@@ -16,8 +16,7 @@ const { userData } = useApplicationStore();
                             Logged in as: <strong>{{ userData.username }}</strong>
                         </p>
                         <ul>
-                            <li>Manage Students (not yet implemented)</li>
-                            <li>Manage Courses (not yet implemented)</li>
+                            
                         </ul>
                     </div>
                 </div>

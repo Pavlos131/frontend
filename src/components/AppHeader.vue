@@ -2,6 +2,8 @@
 import { RouterLink } from 'vue-router';
 import { useApplicationStore } from '@/stores/application.js';
 const applicationStore = useApplicationStore();
+
+
 </script>
 
 <template>
@@ -23,7 +25,7 @@ const applicationStore = useApplicationStore();
                             >Home</router-link
                         >
                     </li>
-                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
+                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true && applicationStore.isMod()=== true">
                         <router-link :to="{ name: 'Requests' }" class="nav-link text-white"
                             >Requests</router-link
                         >
@@ -53,7 +55,7 @@ const applicationStore = useApplicationStore();
                     >Sign up</router-link
                     >
                   </li>
-                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
+                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true && applicationStore.isAdmin() ===true ">
                         <router-link :to="{ name: 'users' }" class="nav-link text-white"
                             >Users</router-link
                         >
