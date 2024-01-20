@@ -65,6 +65,12 @@ const router = createRouter({
             component: () => import('../views/myrequestsview.vue'),
             meta: { requiresAuth: true }
         
+        },
+        {
+            path: '/signup',
+            name: 'signup',
+            component: () => import('../views/SignupRequest.vue'),
+
         }
     ]
 });
