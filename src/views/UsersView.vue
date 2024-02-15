@@ -2,13 +2,14 @@
 import { ref, watchEffect } from 'vue';
 
 
-
+import { useRemoteData } from "@/composables/useRemoteData.js";
 import { useRemoteDataGET } from '@/composables/useRemoteDataGET.js';
+
 import router from '@/router';
 
 
 const formattedData = ref([]);
-function ds(){
+
 const { data, error, loading } = useRemoteDataGET('http://localhost:9090/api/users/', true);
 watchEffect(() => {
     if (data.value) {
@@ -20,14 +21,14 @@ watchEffect(() => {
             roles: user.roles || 'N/A' 
         }));
     }
-})}
+})
 
 async function makemod(id) {
     
         // Make mod
          useRemoteDataGET('http://localhost:9090/api/users/makemod/' + id,true);
-         ds()
-         window
+         
+         
          
      
 }
@@ -36,13 +37,27 @@ async function removemod(id) {
     
         // Make mod
          useRemoteDataGET('http://localhost:9090/api/users/removemod/' + id,true);
-         ds();
          
     
         
         
 }
-ds();
+async function deleteuser(id) {
+  const urlRef = ref(`http://localhost:9090/api/users/${id}`);
+  const authRef = ref(true); 
+  const methodRef = ref("DELETE"); 
+
+  const { data, error, loading, performRequest } = useRemoteData(urlRef, authRef, methodRef);
+
+  performRequest(); 
+  const entryIndex = formattedData.value.findIndex(entry => entry.id === id);
+        if (entryIndex !== -1) {
+            formattedData.value.splice(entryIndex, 1);
+        }
+         
+  
+}
+
 </script>
 
 <template>
@@ -59,6 +74,7 @@ ds();
           <li v-for="role in user.roles" :key="role">{{ role }}</li>
         </ul>
       </div>
+      <button @click="deleteuser(user.id)"  >delete user</button>
       <button @click="makemod(user.id)"  >makemod</button>
      <button @click="removemod(user.id)">remove mod</button>
       <RouterLink
