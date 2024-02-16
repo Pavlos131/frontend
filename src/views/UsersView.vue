@@ -62,7 +62,7 @@ async function deleteuser(id) {
 
 <template>
   <div class="users-view">
-    <h2>Users kante reload meta apo removemod i makemod</h2>
+    <h2>Users Management kante refresh tin selida meta apo makemod h removemod</h2>
     <div v-for="user in formattedData" :key="user.id" class="user-details">
       <p><strong>ID:</strong> {{ user.id }}</p>
       <p><strong>Username:</strong> {{ user.username }}</p>
@@ -74,87 +74,110 @@ async function deleteuser(id) {
           <li v-for="role in user.roles" :key="role">{{ role }}</li>
         </ul>
       </div>
-      <button @click="deleteuser(user.id)"  >delete user</button>
-      <button @click="makemod(user.id)"  >makemod</button>
-     <button @click="removemod(user.id)">remove mod</button>
+      <button @click="deleteuser(user.id)" class="btn-delete">Delete User</button>
+      <button @click="makemod(user.id)" class="btn-makemod">Make Mod</button>
+      <button @click="removemod(user.id)" class="btn-removemod">Remove Mod</button>
+ 
       <RouterLink
-        class=".custom-button"
+       
         :to="{ name: 'edituser', params: { id: user.id } }"
       >Edit User</RouterLink>
     </div>
   </div>
 </template>
-
-  <style scoped>
-  .custom-button {
+<style scoped>
+.custom-button, .btn-delete, .btn-makemod, .btn-removemod {
   display: inline-block;
-  padding: 6px 12px;
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
+  padding: 8px 16px;
+  margin: 5px; /* Provides spacing around buttons */
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
   color: #fff;
-  background-color: #337ab7;
-  border-color: #2e6da4;
-  text-decoration: none; /* Remove underline */
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
 }
-  .users-view {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
 
-  .user-details {
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #fff;
-    border: 1px solid #eee;
-    border-radius: 4px;
-  }
+/* Specific styles for each button based on their class */
+.btn-delete {
+  background-color: #d9534f; /* Red for delete */
+}
+.btn-delete:hover {
+  background-color: #c9302c;
+}
 
-  .user-details p {
-    margin: 5px 0;
-    color: #333;
-    font-size: 16px;
-  }
+.btn-makemod {
+  background-color: #5bc0de; /* Blue for make mod */
+}
+.btn-makemod:hover {
+  background-color: #31b0d5;
+}
 
-  .user-details strong {
-    color: #007bff;
-  }
+.btn-removemod {
+  background-color: #f0ad4e; /* Orange for remove mod */
+}
+.btn-removemod:hover {
+  background-color: #ec971f;
+}
 
-  .users-view h2 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-  }
+/* Styles for the rest of the template */
+.users-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  .user-details ul {
-    list-style-type: none;
-    padding: 0;
-  }
+.user-details {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  text-align: center;
+}
 
-  .user-details li {
-    background-color: #f0f0f0;
-    margin: 5px 0;
-    padding: 5px 10px;
-    border-radius: 2px;
-    font-size: 14px;
-  }
+.user-details p, .user-details strong {
+  color: #333;
+}
+
+.user-details p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.user-details strong {
+  display: block;
+}
+
+.users-view h2 {
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.user-details ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+.user-details li {
+  display: inline-block;
+  background-color: #f0f0f0;
+  margin: 5px;
+  padding: 8px 10px;
+  border-radius: 2px;
+  font-size: 14px;
+}
 </style>
+
