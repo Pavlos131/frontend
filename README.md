@@ -1,2 +1,7 @@
-npm install 
-kai meta npm run dev
+### Ekteleste afta
+```
+npm install
+```
+```
+npm run dev
+```
