@@ -2,7 +2,6 @@
 import { ref, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useRemoteData } from "@/composables/useRemoteData.js";
-
 const formDataRef = ref({
   username: "",
   password: "",
@@ -16,15 +15,12 @@ console.log(userid.value);
 const urlRef = computed(() => {
   return 'http://localhost:9090/api/users/edituser/' + userid.value;
 });
-
 const authRef = ref(true);
 const methodRef = ref("POST");
-const { data, performRequest } = useRemoteData(urlRef, authRef, methodRef);
-
+const { data, performRequest } = useRemoteData(urlRef, authRef, methodRef,formDataRef);
 const isFormValid = computed(() => {
   return formDataRef.value.username && formDataRef.value.password && formDataRef.value.email;
 });
-
 const onSubmit = () => {
   if (isFormValid.value) {
     performRequest(formDataRef.value);
@@ -68,5 +64,3 @@ const onSubmit = () => {
     </div>
   </div>
 </template>
-
-  

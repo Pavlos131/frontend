@@ -2,7 +2,7 @@
 
 <template>
   <div class="container mb-4">
-    <h1>New Request</h1>
+    <h1>Signup</h1>
     <!-- Display message if form is invalid -->
     <div v-if="!isFormValid" class="alert alert-warning">
       Simpliroste ola ta pedia.
